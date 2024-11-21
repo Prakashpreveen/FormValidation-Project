@@ -79,3 +79,35 @@ function validateEmail() {
     return true;
   }
 }
+
+function validateMessage() {
+  let message = document.getElementById("message");
+  let required = 30;
+  let leftLetters = required - message.value.length;
+
+  if (message.value == "") {
+    messageError.innerHTML = "* Enter the Message*";
+    return false;
+  } else if (message.value.length < 30) {
+    messageError.innerHTML = `*Needed ${leftLetters} more Letters*`;
+    return false;
+  } else {
+    messageError.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+    setTimeout(() => {
+      messageError.innerHTML = "";
+    }, 1000);
+    return true;
+  }
+}
+
+function validateSubmit() {
+  if (
+    !validateName() ||
+    !validateNumber() ||
+    !validateEmail() ||
+    !validateMessage()
+  ) {
+    submitError.innerHTML = "* Please Fix the Error for Submission *";
+    return false;
+  }
+}
